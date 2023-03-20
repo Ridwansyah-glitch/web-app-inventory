@@ -7,19 +7,9 @@ require_once "../template/header.php";
 require_once "../template/navbar.php";
 require_once "../template/sidebar.php";
 
-if (isset($_POST['tambahSatuan'])) {
-    if (addSatuan($_POST) > 0) {
-        echo "
-            <script>
-                alert('Data Berhasil Diinput');
-                document.location.href='data-satuan.php';
-            </script>
-        ";
-    }
-}
 
 if (isset($_POST['delete'])) {
-    if (deleteBarangKeluar($_POST) > 0) {
+    if (deleteBk($_POST) > 0) {
         echo "
             <script>
                 alert('Data Berhasil Dihapus');
@@ -59,7 +49,7 @@ if (isset($_POST['delete'])) {
                             <?php $no = 1; ?>
                             <?php $sql = $koneksi->query("SELECT * FROM barang_keluar JOIN barang ON barang.id=barang_keluar.barang_id"); ?>
                             <?php while ($data = $sql->fetch_assoc()) : ?>
-                                <?php $idb = $data['barang_id'] ?>
+                                <?php $idb = $data['id_bk'] ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $data['nama_barang'] ?></td>
