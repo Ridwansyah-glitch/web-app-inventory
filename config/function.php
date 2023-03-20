@@ -218,10 +218,10 @@ function addBarangKeluar($data)
 }
 
 
-function deleteBarangKeluar($data)
+function deleteBk($data)
 {
     global $koneksi;
     $id = $data['id'];
-    $koneksi->query("DELETE FROM barang_keluar WHERE id='$id'");
+    $koneksi->query("DELETE FROM barang_keluar WHERE id_bk='$id'");
     return mysqli_affected_rows($koneksi);
 }
