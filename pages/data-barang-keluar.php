@@ -18,7 +18,16 @@ if (isset($_POST['tambahSatuan'])) {
     }
 }
 
-
+if (isset($_POST['delete'])) {
+    if (deleteBarangKeluar($_POST) > 0) {
+        echo "
+            <script>
+                alert('Data Berhasil Dihapus');
+                document.location.href='data-barang-keluar.php';
+            </script>
+        ";
+    }
+}
 
 ?>
 
