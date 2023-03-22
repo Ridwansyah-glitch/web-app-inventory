@@ -7,18 +7,17 @@ require_once "../template/header.php";
 require_once "../template/navbar.php";
 require_once "../template/sidebar.php";
 
-if (isset($_POST['tambahSatuan'])) {
-    if (addSatuan($_POST) > 0) {
+
+if (isset($_POST['delete'])) {
+    if (deleteBk($_POST) > 0) {
         echo "
             <script>
-                alert('Data Berhasil Diinput');
-                document.location.href='data-satuan.php';
+                alert('Data Berhasil Dihapus');
+                document.location.href='data-barang-keluar.php';
             </script>
         ";
     }
 }
-
-
 
 ?>
 
@@ -50,7 +49,8 @@ if (isset($_POST['tambahSatuan'])) {
                             <?php $no = 1; ?>
                             <?php $sql = $koneksi->query("SELECT * FROM barang_keluar JOIN barang ON barang.id=barang_keluar.barang_id"); ?>
                             <?php while ($data = $sql->fetch_assoc()) : ?>
-                                <?php $idb = $data['barang_id'] ?>
+                                <?php $idb = $data['id_bk'] ?>
+                                <?php $idbarang = $data['barang_id'] ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $data['nama_barang'] ?></td>
@@ -58,7 +58,7 @@ if (isset($_POST['tambahSatuan'])) {
                                     <td><span class="badge text-bg-danger">- <?= $data['jumlah'] ?></span></td>
                                     <td><?= $data['tujuan'] ?></td>
                                     <td>
-                                        <a href="<?= $main_url ?>pages/details/detail-data-bk.php?id=<?= $idb; ?>" class="btn btn-info btn-sm" title="Info"><i class="fa-sharp fa-solid fa-circle-info"></i></a>
+                                        <a href="<?= $main_url ?>pages/details/detail-data-bk.php?id=<?= $idbarang; ?>" class="btn btn-info btn-sm" title="Info"><i class="fa-sharp fa-solid fa-circle-info"></i></a>
                                         <form action="" method="POST" class="d-inline">
                                             <input type="hidden" value="<?= $idb ?>" name="id">
                                             <button class="btn btn-danger btn-sm" onclick="confirm('Apa Kamu yakin Hapus?');" name="delete"><i class="fa-solid fa-trash"></i></button>

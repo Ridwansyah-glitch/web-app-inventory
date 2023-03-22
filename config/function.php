@@ -216,3 +216,12 @@ function addBarangKeluar($data)
 
     return mysqli_affected_rows($koneksi);
 }
+
+
+function deleteBk($data)
+{
+    global $koneksi;
+    $id = $data['id'];
+    $koneksi->query("DELETE FROM barang_keluar WHERE id_bk='$id'");
+    return mysqli_affected_rows($koneksi);
+}
