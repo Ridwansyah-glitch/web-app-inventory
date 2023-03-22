@@ -9,15 +9,49 @@
 </div>
 
 <script script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.2/chart.min.js" integrity="sha512-zjlf0U0eJmSo1Le4/zcZI51ks5SjuQXkU0yOdsOBubjSmio9iCUp8XPLkEAADZNBdR9crRy3cniZ65LF2w8sRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="<?= $main_url ?>sb_admin/js/scripts.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 <script src="<?= $main_url ?>sb_admin/js/datatables-simple-demo.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script>
+    <?php
+    $sqlBm = $koneksi->query("SELECT SUM(jumlah) as jumlah FROM barang_masuk");
+    while ($resBM = $sqlBm->fetch_assoc()) {
+        $dataBm[] = $resBM['jumlah'];
+    }
+    $sqlBk = $koneksi->query("SELECT SUM(jumlah) as jumlah FROM barang_keluar");
+    while ($resBK = $sqlBk->fetch_assoc()) {
+        $dataBk[] = $resBK['jumlah'];
+    }
+    ?>
+    const labels = [
+        'Barang Masuk',
+        'Barang Keluar'
+    ]
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'My First Dataset',
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 205, 86)'
+            ],
+            data: [<?= json_encode($dataBm); ?>, <?= json_encode($dataBk); ?>],
+            hoverOffset: 4
+        }]
+    };
 
-<script src="<?= $main_url ?>sb_admin/assets/demo/chart-bar-demo.js"></script>
-<script src="<?= $main_url ?>sb_admin/assets/demo/chart-pie-demo.js"></script>
+    const config = {
+        type: 'pie',
+        data: data,
+        option: {}
+    };
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
 </body>
 </body>
 

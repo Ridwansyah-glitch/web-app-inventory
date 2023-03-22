@@ -17,11 +17,11 @@ $data = $sql2->fetch_assoc();
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Data Barang Masuk</h1>
+            <h1 class="mt-4">Data Barang Keluar</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item "><a href="<?= $main_url ?>index.php"> Home</a></li>
-                <li class="breadcrumb-item "><a href="<?= $main_url ?>pages/data-barang.php">Data Barang Masuk</a></li>
-                <li class="breadcrumb-item active">Detail Data Barang Masuk</li>
+                <li class="breadcrumb-item "><a href="<?= $main_url ?>pages/data-barang-keluar.php">Data Barang Keluar</a></li>
+                <li class="breadcrumb-item active">Detail Data Barang Keluar</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-header">

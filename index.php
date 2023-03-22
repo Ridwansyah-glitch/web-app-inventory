@@ -7,8 +7,6 @@ require_once "template/header.php";
 require_once "template/navbar.php";
 require_once "template/sidebar.php";
 
-
-
 $sqlBrg = $koneksi->query("SELECT * FROM barang");
 $resultBarang = mysqli_num_rows($sqlBrg);
 
@@ -25,7 +23,6 @@ $resultSupplier = $sqlSupplier->num_rows;
 
 <div id="layoutSidenav_content">
     <main>
-
         <div class="container-fluid px-4">
             <h1 class="mt-4">Dashboard</h1>
             <ol class="breadcrumb mb-4">
@@ -95,12 +92,9 @@ $resultSupplier = $sqlSupplier->num_rows;
                 </div>
                 <div class="col-lg-8">
                     <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-pie me-1"></i>
-                            Pie Chart Example
+                        <div class="card-body">
+                            <canvas id="myChart" style="margin:0 auto;"></canvas>
                         </div>
-                        <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                     </div>
                 </div>
             </div>
