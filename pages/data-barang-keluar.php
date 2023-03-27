@@ -55,7 +55,7 @@ if (isset($_POST['delete'])) {
                                     <td><?= $no++ ?></td>
                                     <td><?= $data['nama_barang'] ?></td>
                                     <td><?= date('d/m/Y H:i', strtotime($data['tanggal_keluar'])) ?></td>
-                                    <td><span class="badge text-bg-danger">- <?= $data['jumlah'] ?></span></td>
+                                    <td><span class="badge text-bg-danger">- <?= $data['jumlah_keluar'] ?></span></td>
                                     <td><?= $data['tujuan'] ?></td>
                                     <td>
                                         <a href="<?= $main_url ?>pages/details/detail-data-bk.php?id=<?= $idbarang; ?>" class="btn btn-info btn-sm" title="Info"><i class="fa-sharp fa-solid fa-circle-info"></i></a>

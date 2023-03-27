@@ -8,8 +8,7 @@ require_once "../../template/navbar.php";
 require_once "../../template/sidebar.php";
 
 $id = $_GET['id'];
-$sql = $koneksi->query("SELECT * FROM barang_masuk as bm JOIN barang as b ON bm.barang_id=b.id 
-                        JOIN supplier as sp ON bm.supplier_id=sp.id_supplier WHERE id='$id'");
+$sql = $koneksi->query("SELECT * FROM barang_masuk as bm JOIN barang as b ON bm.barang_id=b.id JOIN supplier as sp ON bm.supplier_id=sp.id_supplier WHERE id='$id'");
 $result = $sql->fetch_assoc();
 
 $sql2 = $koneksi->query("SELECT * FROM barang as b JOIN satuan as s ON b.satuan_id=s.id_satuan  WHERE id='$id'");
@@ -50,7 +49,7 @@ $data = $sql2->fetch_assoc();
                                 <tr>
                                     <th>Jumlah Masuk</th>
                                     <td>:</td>
-                                    <td><?= $result['jumlah'] ?> <?= $data['nama_satuan'] ?></td>
+                                    <td><?= $result['jumlah_masuk'] ?> <?= $data['nama_satuan'] ?></td>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Masuk</th>

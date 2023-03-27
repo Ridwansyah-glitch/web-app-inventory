@@ -7,7 +7,7 @@ require_once "../template/header.php";
 require_once "../template/navbar.php";
 require_once "../template/sidebar.php";
 
-if (isset($_POST['tambahBarang'])) {
+if (isset($_POST['addBarang'])) {
     if (addBarang($_POST) > 0) {
         echo "
             <script>
@@ -67,7 +67,7 @@ if (isset($_POST['delete'])) {
             <?php endif; ?>
             <div class="card mb-4">
                 <div class="card-header">
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addBarang"> <i class="fa-solid fa-plus"></i> Tambah Barang</button>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addBarang"> <i class="fa-solid fa-plus"></i> Tambah Data</button>
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple" class="table table-hover">
@@ -145,6 +145,7 @@ if (isset($_POST['delete'])) {
                                         </div>
                                     </div>
                                 </div>
+                                <!-- end modal edit -->
                             <?php endwhile; ?>
                         </tbody>
                     </table>
@@ -156,8 +157,8 @@ if (isset($_POST['delete'])) {
     <?php
     require_once "../template/footer.php";
     ?>
-    <!-- Modal -->
-    <div class="modal fade" id="addBarang" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- modal addBarang -->
+    <div class="modal fade" id="addBarang" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -165,10 +166,10 @@ if (isset($_POST['delete'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data">
+                    <form method="POST" enctype="multipart/form-data" class="myInput">
                         <div class="mb-2">
                             <label for="id_barang" class="form-label">ID</label>
-                            <input type="text" class="form-control" name="id_barang" value="<?= $idBarang ?>" readonly>
+                            <input type="text" class="form-control" name="id_barang" value="<?= $idBarang; ?>" readonly>
                         </div>
                         <div class="mb-2">
                             <label for="nama_barang" class="form-label">Nama Barang</label>
@@ -190,11 +191,11 @@ if (isset($_POST['delete'])) {
                             <input type="file" class="form-control" name="gambar" required>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" name="tambahBarang">simpan</button>
+                            <button type="submit" class="btn btn-primary" name="addBarang">simpan</button>
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
+    <!-- end modal addBarang -->
