@@ -59,7 +59,7 @@ if (isset($_POST['delete'])) {
                                     <td><?= $no++ ?></td>
                                     <td><?= $data['nama_barang'] ?></td>
                                     <td><?= $data['nama_supplier'] ?></td>
-                                    <td><span class="badge text-bg-success">+ <?= $data['jumlah'] ?></span></td>
+                                    <td><span class="badge text-bg-success">+ <?= $data['jumlah_masuk'] ?></span></td>
                                     <td><?= date('d/m/Y H:i', strtotime($data['tanggal_masuk'])) ?></td>
                                     <td>
                                         <a href="<?= $main_url ?>pages/details/detail-data-bm.php?id=<?= $idb; ?>" class="btn btn-info btn-sm" title="Info"><i class="fa-sharp fa-solid fa-circle-info"></i></a>

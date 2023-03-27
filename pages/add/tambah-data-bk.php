@@ -61,7 +61,7 @@ if (isset($_POST['tambahBarangKeluar'])) {
                                     </div>
                                     <div class="mb-2">
                                         <label for="jumlah">Jumlah</label>
-                                        <input type="number" class="form-control" name="jumlah" min="1" required>
+                                        <input type="number" class="form-control" name="jumlah_keluar" min="1" required>
                                     </div>
                                     <div class="mb-2">
                                         <label for="tujuan">Tujuan</label>

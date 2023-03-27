@@ -31,7 +31,7 @@
                         Data Barang Keluar
                     </a>
                     <hr class="mb-0">
-                    <a class="nav-link" href="index.php">
+                    <a class="nav-link" href="<?= $main_url ?>pages/report.php">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-pie"></i></div>
                         Laporan
                     </a>

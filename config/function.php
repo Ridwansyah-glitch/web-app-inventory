@@ -10,8 +10,8 @@ function addBarang($data)
     global $koneksi;
     global $main_url;
 
-    $id = $data['id_barang'];
-    $nama_barang = $data['nama_barang'];
+    $id = htmlspecialchars($data['id_barang']);
+    $nama_barang = htmlspecialchars($data['nama_barang']);
     // $stok = $data['stok'];
     $satuan = $data['satuan'];
     //fungsi upload gambar
@@ -48,8 +48,8 @@ function editBarang($data)
 
     global $koneksi;
     global $main_url;
-    $id = $data['id_barang'];
-    $nama_barang = $data['nama_barang'];
+    $id = htmlspecialchars($data['id_barang']);
+    $nama_barang = htmlspecialchars($data['nama_barang']);
     $satuan = $data['satuan'];
 
     $oldImg = $data['imgLama'];
@@ -134,9 +134,9 @@ function addSupplier($data)
 {
     global $koneksi;
 
-    $nama_supplier = $data['nama_supplier'];
-    $tlp = $data['telepon_supplier'];
-    $alamat = $data['alamat'];
+    $nama_supplier = htmlspecialchars($data['nama_supplier']);
+    $tlp = htmlspecialchars($data['telepon_supplier']);
+    $alamat = htmlspecialchars($data['alamat']);
 
     $koneksi->query("INSERT INTO supplier(nama_supplier,telepon_supplier,alamat,update_at) VALUES('$nama_supplier','$tlp','$alamat',NOW())");
     return mysqli_affected_rows($koneksi);
@@ -146,10 +146,10 @@ function editSupplier($data)
 {
     global $koneksi;
 
-    $id_supplier = $data['id_supplier'];
-    $nama_supplier = $data['nama_supplier'];
-    $tlp = $data['telepon_supplier'];
-    $alamat = $data['alamat'];
+    $id_supplier = htmlspecialchars($data['id_supplier']);
+    $nama_supplier = htmlspecialchars($data['nama_supplier']);
+    $tlp = htmlspecialchars($data['telepon_supplier']);
+    $alamat = htmlspecialchars($data['alamat']);
 
     $koneksi->query("UPDATE supplier SET nama_supplier='$nama_supplier',telepon_supplier='$tlp',alamat='$alamat',update_at=NOW() WHERE id_supplier='$id_supplier'");
     return mysqli_affected_rows($koneksi);
@@ -172,9 +172,9 @@ function addBarangMasuk($data)
 
     $id_barang = $data['id'];
     $supplier = $data['supplier'];
-    $jumlah = $data['jumlah'];
+    $jumlah = htmlspecialchars($data['jumlah_masuk']);
 
-    $koneksi->query("INSERT INTO barang_masuk(barang_id,supplier_id,jumlah,tanggal_masuk)
+    $koneksi->query("INSERT INTO barang_masuk(barang_id,supplier_id,jumlah_masuk,tanggal_masuk)
      VALUES('$id_barang','$supplier','$jumlah',NOW())");
 
     $idBarang = $koneksi->insert_id;
@@ -196,8 +196,8 @@ function addBarangKeluar($data)
 {
     global $koneksi;
     $id_barang = $data['id'];
-    $tujuan = $data['tujuan'];
-    $jumlah = $data['jumlah'];
+    $tujuan = htmlspecialchars($data['tujuan']);
+    $jumlah = htmlspecialchars($data['jumlah_keluar']);
 
     //jika stok barang kurang
     $sql = $koneksi->query("SELECT * FROM barang WHERE id='$id_barang'");
@@ -208,7 +208,7 @@ function addBarangKeluar($data)
         document.location.href='../data-barang-keluar.php';
   </script>";
     } else {
-        $koneksi->query("INSERT INTO barang_keluar(barang_id,tanggal_keluar,tujuan,jumlah) 
+        $koneksi->query("INSERT INTO barang_keluar(barang_id,tanggal_keluar,tujuan,jumlah_keluar) 
             VALUES('$id_barang',NOW(),'$tujuan','$jumlah')");
         $idBarang = $koneksi->insert_id;
         $koneksi->query("UPDATE barang SET stok=stok-$jumlah WHERE id='$id_barang'");

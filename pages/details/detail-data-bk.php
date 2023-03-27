@@ -44,7 +44,7 @@ $data = $sql2->fetch_assoc();
                                 <tr>
                                     <th>Jumlah Keluar</th>
                                     <td>:</td>
-                                    <td><?= $result['jumlah'] ?> <?= $data['nama_satuan'] ?></td>
+                                    <td><?= $result['jumlah_keluar'] ?> <?= $data['nama_satuan'] ?></td>
                                 </tr>
                                 <tr>
                                     <th>Tanggal Keluar</th>

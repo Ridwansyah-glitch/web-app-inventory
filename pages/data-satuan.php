@@ -130,15 +130,6 @@ if (isset($_POST['delete'])) {
             </div>
         </div>
     </main>
-
-    <script>
-        $('#btn-edit').on('click', function() {
-            $('#editBarang').modal('show');
-        });
-    </script>
-    <?php
-    require_once "../template/footer.php";
-    ?>
     <!-- Modal -->
     <div class="modal fade" id="addSatuan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -162,3 +153,11 @@ if (isset($_POST['delete'])) {
             </div>
         </div>
     </div>
+    <script>
+        $('#btn-edit').on('click', function() {
+            $('#editBarang').modal('show');
+        });
+    </script>
+    <?php
+    require_once "../template/footer.php";
+    ?>
