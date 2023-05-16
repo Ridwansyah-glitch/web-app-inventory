@@ -3,6 +3,31 @@
 //url induk
 $main_url = "http://localhost/inventory2/";
 
+//login
+function loginFunction($data)
+{
+    global $koneksi;
+
+    $username = $data['username'];
+    $password = $data['password'];
+
+    $qry = $koneksi->query("SELECT * FROM users WHERE username='$username' AND password='$password'");
+    $result = $qry->num_rows;
+
+    if ($result > 0) {
+        $session = $qry->fetch_assoc();
+        $_SESSION['login'] = $session;
+    } else {
+        echo "
+        <script>
+            alert('Username Atau Password Salah');
+            document.location.href='login.php';
+        </script>
+    ";
+    }
+
+    return mysqli_affected_rows($koneksi);
+}
 
 //Function Barang
 function addBarang($data)
