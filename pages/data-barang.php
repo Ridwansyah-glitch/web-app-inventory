@@ -1,7 +1,13 @@
 <?php
+session_start();
+if (!isset($_SESSION['login'])) {
+    header("Location: ../login.php");
+    exit;
+}
+
+require_once "../config/function.php";
 require_once "../config/koneksi.php";
 require_once "../config/newID.php";
-require_once "../config/function.php";
 $title = "Data Barang - Inventory";
 require_once "../template/header.php";
 require_once "../template/navbar.php";
@@ -74,6 +80,7 @@ if (isset($_POST['delete'])) {
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Id Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Satuan</th>
                                 <th>Stok</th>
@@ -88,6 +95,7 @@ if (isset($_POST['delete'])) {
                                 <?php $idb = $data['id'] ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
+                                    <td><?= $data['id_barang'] ?></td>
                                     <td><?= $data['nama_barang'] ?></td>
                                     <td><?= $data['nama_satuan'] ?></td>
                                     <td><?= $data['stok'] ?></td>

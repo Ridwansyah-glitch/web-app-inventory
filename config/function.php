@@ -3,6 +3,35 @@
 //url induk
 $main_url = "http://localhost/inventory2/";
 
+
+
+//register
+
+function registerfunc($data)
+{
+    global $koneksi;
+
+    $name = $data['name'];
+    $username = $data['username'];
+    $email = $data['email'];
+    $password = $data['password'];
+    $rpassword = $data['rpassword'];
+
+    $qry = $koneksi->query("SELECT * FROM users");
+    $result = $qry->fetch_assoc();
+
+    if ($username == $result['username']) {
+        echo "<scrip>alert('Username sudah digunakan');</scrip>";
+    } elseif ($password != $rpassword) {
+        echo "<scrip>alert('Password tidak sesuai');</scrip>";
+    } else {
+        $koneksi->query("INSERT INTO users(nama,username,email,password,created_at) 
+        VALUES('$name','$username','$email','$password',NOW())");
+    }
+
+    return mysqli_affected_rows($koneksi);
+}
+
 //login
 function loginFunction($data)
 {
@@ -19,11 +48,8 @@ function loginFunction($data)
         $_SESSION['login'] = $session;
     } else {
         echo "
-        <script>
-            alert('Username Atau Password Salah');
-            document.location.href='login.php';
-        </script>
-    ";
+        <script>alert('Username Atau Password Salah');</script>";
+        header("location:login.php");
     }
 
     return mysqli_affected_rows($koneksi);
@@ -64,7 +90,8 @@ function addBarang($data)
     $namaFileBaru = uniqid() . '-' . $namaFile;
     move_uploaded_file($tmpName, '../assets/img/' . $namaFileBaru);
 
-    $koneksi->query("INSERT INTO barang(id_barang,nama_barang,satuan_id,foto_barang,created_at) VALUES('$id','$nama_barang','$satuan','$namaFileBaru',NOW())");
+    $koneksi->query("INSERT INTO barang(id_barang,nama_barang,satuan_id,foto_barang,created_at) 
+    VALUES('$id','$nama_barang','$satuan','$namaFileBaru',NOW())");
     return mysqli_affected_rows($koneksi);
 }
 

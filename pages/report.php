@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['login'])) {
+    header("Location: ../login.php");
+    exit;
+}
 require_once "../config/koneksi.php";
 require_once "../config/newID.php";
 require_once "../config/function.php";
@@ -29,7 +34,7 @@ require_once "../template/sidebar.php";
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <table id="datatablesSimple" class="table table-hover">
+                            <table id="datatablesSimple" class="table table-hover" id="mauexport">
                                 <?php if (isset($_POST['filter'])) { ?>
                                     <thead>
                                         <tr>
@@ -99,4 +104,15 @@ require_once "../template/sidebar.php";
 
     <?php
     require_once "../template/footer.php";
+
     ?>
+    <script>
+        $(document).ready(function() {
+            $('#mauexport').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    </script>
