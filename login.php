@@ -1,16 +1,17 @@
 <?php
+session_start();
+
+if (isset($_SESSION['login'])) {
+    header('location:index.php');
+}
 require_once "config/function.php";
 require_once "config/koneksi.php";
 
-
 if (isset($_POST['login'])) {
     if (loginFunction($_POST) > 0) {
-        echo "
-    <script>
-        alert('Anda Berhasil Login');
-        document.location.href='index.php';
-    </script>
-";
+
+        echo "<script>alert('Anda Berhasil Login');
+        window.location.href='index.php';</script>";
     }
 }
 
@@ -35,6 +36,7 @@ if (isset($_POST['login'])) {
             <main>
                 <div class="container">
                     <div class="row justify-content-center">
+                        <h2 class="text-center mb-2 mt-5 text-white">Selamat Datang</h2>
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header">
@@ -43,11 +45,11 @@ if (isset($_POST['login'])) {
                                 <div class="card-body">
                                     <form method="POST">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" name="username" id="username" type="text" placeholder="Username" />
+                                            <input class="form-control" name="username" id="username" type="text" placeholder="Username" required />
                                             <label for="username">Username</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" name="password" id="password" type="password" placeholder="Password" />
+                                            <input class="form-control" name="password" id="password" type="password" placeholder="Password" required />
                                             <label for="password">Password</label>
                                         </div>
                                         <!-- <div class="form-check mb-3">

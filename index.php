@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['login'])) {
+    header("Location: login.php");
+    exit;
+}
 require_once "config/koneksi.php";
 require_once "config/newID.php";
 require_once "config/function.php";
@@ -6,6 +11,8 @@ $title = "Dashboard - Aplikasi Inventory";
 require_once "template/header.php";
 require_once "template/navbar.php";
 require_once "template/sidebar.php";
+
+
 
 $sqlBrg = $koneksi->query("SELECT * FROM barang");
 $resultBarang = mysqli_num_rows($sqlBrg);
@@ -18,6 +25,7 @@ $resultBarangK = $sqlBrgk->num_rows;
 
 $sqlSupplier = $koneksi->query("SELECT * FROM supplier");
 $resultSupplier = $sqlSupplier->num_rows;
+
 
 ?>
 
